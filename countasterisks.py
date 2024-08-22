@@ -2,4 +2,11 @@
 
 class Solution:
     def countAsterisks(self, s: str) -> int:
-        return sum(1 for i,char in enumerate(s) if char == "*" and s[:i].count("|") % 2== 0)
+        cnt = 0
+        inside_bar = False
+        for char in s:
+            if char == "|":
+                inside_bar = not inside_bar
+            elif char == "*" and not inside_bar:
+                cnt += 1
+        return cnt
